@@ -1,7 +1,6 @@
 ## PESU Academy details sniper
 
-Python script using the requests library that fetches student details using  
-brute force attack.
+Python script using the requests library that fetches student details using brute force attack.
 
 ### Requirements
 
@@ -31,4 +30,8 @@ OR
 ```
 If on linux
 
-### NOTE: I AM NOT RESPONSIBLE FOR ANY WRONG USE OF THIS SCRIPT, ANY TROUBLE YOU CAUSE WILL CONFINE TO YOU.  THIS IS JUST A POC.
+### NOTE: I AM NOT RESPONSIBLE FOR ANY WRONG USE OF THIS SCRIPT, ANY TROUBLE YOU CAUSE WILL CONFINE TO YOU. THIS IS JUST A POC.
+
+## License
+
+[pesuDetailsSniper](https://github.com/0xcabrex/pesuDetailsSniper) is licensed under the MIT [License](https://github.com/0xcabrex/pesuDetailsSniper/blob/master/LICENSE) as stated in the LICENSE file
