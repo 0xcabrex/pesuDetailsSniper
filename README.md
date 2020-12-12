@@ -1,9 +1,9 @@
-### PESU Academy details sniper
+## PESU Academy details sniper
 
 Python script using the requests library that fetches student details using  
 brute force attack.
 
-## Requirements
+### Requirements
 
 ```
 Python version - 3.8
@@ -19,7 +19,7 @@ python3 -m pip install requests
 ```
 
 
-##  Running the script
+### Running the script
 
 To run the script:
 ```
@@ -31,4 +31,4 @@ OR
 ```
 If on linux
 
-## NOTE: I AM NOT RESPONSIBLE FOR ANY WRONG USE OF THIS SCRIPT, ANY TROUBLE YOU CAUSE WILL CONFINE TO YOU.  THIS IS JUST A POC.
+### NOTE: I AM NOT RESPONSIBLE FOR ANY WRONG USE OF THIS SCRIPT, ANY TROUBLE YOU CAUSE WILL CONFINE TO YOU.  THIS IS JUST A POC.
