@@ -20,7 +20,7 @@ def input_variables():
         exit(0)
 
     try:
-        campus = int(input("Enter the campus number (1, 2): "))
+        campus = int(input("Enter the campus number (1=RR, 2=EC): "))
         if campus == 1 or campus == 2:
             pass
         else:
@@ -28,6 +28,7 @@ def input_variables():
             exit(-1)
     except ValueError:
         print("Please enter only numbers, exiting...")
+        exit(-1)
 
     try:
         year = int(input("Enter the batch year: "))
@@ -41,26 +42,30 @@ def input_variables():
             if int(year/100) == 20:
                 curr_date = str(date.today()).split('-')
                 curr_date.remove(curr_date[2])
-                if int(year/100) > int(curr_date[0])/100 and int(curr_date[1])/100 < 9:
+                if int(year%100) < int(curr_date[0])%100:
+                    year = year % 100
+                elif int(year%100) == int(curr_date[0])%100 and int(curr_date[1]) > 9:
                     year = year % 100
                 else:
                     print(f"{year} batch doesnt exist yet, exiting...")
-                    exit(0)
+                    exit(-1)
             else:
                 print("Enter an year in this decade, exiting...")
                 exit(-1)
+
         elif year_iter == 2:
             curr_date = str(date.today()).split('-')
             curr_date.remove(curr_date[2])
-            if year > int(curr_date[0])/100 and int(curr_date[1])/100 < 9:
+            if (year == int(curr_date[0])%100 and int(curr_date[1]) < 9) or (year > int(curr_date[0])%100):
                 print(f"20{year} batch does not exist yet, exiting...")
                 exit(0)
         else:
-            print("Enter a normal year :|")
+            print("Enter a year in this millenia at least :|")
             exit(-1)
 
     except ValueError:
         print("Please enter only numbers, exiting...")
+        exit(-1)
 
     branch = input("Enter branch(EC, CS, EE): ").strip()
 
@@ -69,6 +74,7 @@ def input_variables():
         exit(-1)
 
     return name, campus, year, branch
+
 
 
 def attack_vector(name, campus, year, branch):
@@ -83,7 +89,7 @@ def attack_vector(name, campus, year, branch):
     print(f"Name: {name}")
     print(f"Campus: {campus}")
     print(f"Year: 20{year}")
-    print(f"Branch: {branch}\n")
+    print(f"Branch: {branch.upper()}\n")
 
     while 1000 > counter:
         SRN = f"PES{campus}UG{year}{branch.upper()}{counter:03}"
@@ -99,11 +105,15 @@ def attack_vector(name, campus, year, branch):
                 print("FOUND IT!")
                 if not os.path.isdir("./logs"):
                     os.mkdir("./logs")
-                if not os.path.isdir(f"./logs/20{year}"):
-                    os.mkdir(f"./logs/20{year}")
-                with open(f"./logs/20{year}/{name.lower().replace(' ', '_')}_details.html", 'w', encoding='utf-8') as file_handle:
+                if not os.path.isdir(f"./logs/{campus}"):
+                    os.mkdir(f"./logs/{campus}")
+                if not os.path.isdir(f"./logs/{campus}/20{year}"):
+                    os.mkdir(f"./logs/{campus}/20{year}")
+                if not os.path.isdir(f"./logs/{campus}/20{year}/{branch.upper()}"):
+                    os.mkdir(f"./logs/{campus}/20{year}/{branch.upper()}")
+                with open(f"./logs/{campus}/20{year}/{branch.upper()}/{name.lower().replace(' ', '_')}_details.html", 'w', encoding='utf-8') as file_handle:
                     file_handle.write(response.text.strip())
-                print(f"written to file \"./logs/20{year}/{name.lower().replace(' ', '_')}_details.html\"")
+                print(f"written to file \"./logs/{campus}/20{year}/{branch.upper()}/{name.lower().replace(' ', '_')}_details.html") 
                 exit(1)
 
             if disconnect_counter != 0:
